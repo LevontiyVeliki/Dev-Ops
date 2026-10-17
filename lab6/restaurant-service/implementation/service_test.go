@@ -5,7 +5,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/go-kit/kit/log"
+	"github.com/go-kit/log"
 
 	"example.com/restaurant-service/implementation"
 	"example.com/restaurant-service/repository"

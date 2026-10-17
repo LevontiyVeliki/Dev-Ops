@@ -5,7 +5,7 @@ import (
 	"net"
 	"testing"
 
-	"github.com/go-kit/kit/log"
+	"github.com/go-kit/log"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/test/bufconn"
@@ -25,7 +25,7 @@ func newClient(t *testing.T) pb.RestaurantServiceClient {
 	svc := implementation.NewService(repository.NewMemoryRepository(), logger)
 	server := grpc.NewServer()
 	pb.RegisterRestaurantServiceServer(server, grpctransport.NewGRPCServer(transport.MakeEndpoints(svc), logger))
-	go server.Serve(lis)
+	go func() { _ = server.Serve(lis) }()
 	t.Cleanup(server.Stop)
 
 	conn, err := grpc.NewClient("passthrough:///bufnet",

@@ -6,8 +6,8 @@ package grpc
 import (
 	"context"
 
-	"github.com/go-kit/kit/log"
 	grpctransport "github.com/go-kit/kit/transport/grpc"
+	"github.com/go-kit/log"
 
 	"example.com/restaurant-service/pb"
 	"example.com/restaurant-service/restaurant"

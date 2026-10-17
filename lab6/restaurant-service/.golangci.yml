@@ -1,0 +1,7 @@
+# Настройки golangci-lint для сервиса «Рестораны»
+linters-settings:
+  errcheck:
+    # Ошибку записи в лог go-kit принято не проверять: логгер не должен
+    # влиять на обработку запроса
+    exclude-functions:
+      - (github.com/go-kit/log.Logger).Log

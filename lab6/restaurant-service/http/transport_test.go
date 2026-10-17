@@ -2,12 +2,14 @@ package http_test
 
 import (
 	"encoding/json"
+	"errors"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
 
-	"github.com/go-kit/kit/log"
+	"github.com/go-kit/log"
 
 	httptransport "example.com/restaurant-service/http"
 	"example.com/restaurant-service/implementation"
@@ -30,7 +32,9 @@ func do(t *testing.T, method, url, body string) (int, map[string]interface{}) {
 	}
 	defer resp.Body.Close()
 	var out map[string]interface{}
-	json.NewDecoder(resp.Body).Decode(&out)
+	if err := json.NewDecoder(resp.Body).Decode(&out); err != nil && !errors.Is(err, io.EOF) {
+		t.Fatalf("decode: %v", err)
+	}
 	return resp.StatusCode, out
 }
 

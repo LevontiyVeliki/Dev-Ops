@@ -8,8 +8,8 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/go-kit/kit/log"
 	kithttp "github.com/go-kit/kit/transport/http"
+	"github.com/go-kit/log"
 	"github.com/gorilla/mux"
 
 	"example.com/restaurant-service/restaurant"
@@ -77,7 +77,7 @@ func encodeResponse(_ context.Context, w http.ResponseWriter, response interface
 func encodeError(_ context.Context, err error, w http.ResponseWriter) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(codeFrom(err))
-	json.NewEncoder(w).Encode(map[string]interface{}{"error": err.Error()})
+	_ = json.NewEncoder(w).Encode(map[string]interface{}{"error": err.Error()})
 }
 
 func codeFrom(err error) int {
