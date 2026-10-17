@@ -1,0 +1,5 @@
+*.out
+*.log
+server.pid
+restaurant-service
+id.txt
