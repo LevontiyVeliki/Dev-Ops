@@ -1,0 +1,7 @@
+{
+  "customer_id": "cust-1",
+  "restaurant_id": "rest-42",
+  "order_items": [
+    {"product_code": "P001", "name": "Пицца", "unit_price": 550.0, "quantity": 1}
+  ]
+}
